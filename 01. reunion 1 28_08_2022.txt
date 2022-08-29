@@ -1,0 +1,27 @@
+Compartir github tener listo antes del martes (leonardo)
+redactar informe de restrospectiva.
+
+andres felipe Baez y jhonatan comparten componentes de GUI
+Juan felipe Bernal 
+
+joaquin generar preliminar de usuarios
+
+coordinar reunion con tutor
+
+Fechas y horas de reuniones de grupo
+
+martes, luego de clase
+jueves, 7:00 pm
+sabado, 9:00 am
+
+realizar boceto del front para socializarlo (
+
+Sobre el primer sprint:
+i. Repositorio (GitHub) donde integrarán el trabajo.
+ii. Gestión de configuración.
+iii. Historias de usuario desarrolladas en el Sprint 1. (Trello) (definir usuarios)
+iv. Presentación MVC (definir con el tutor)
+1. Interfases gráficas de usuario (bocetos)
+2. Navegación entre interfases
+v. Informe de retrospectiva
+vi. Historias de usuario a desarrollar en el sprint 2. (Trello)
