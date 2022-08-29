@@ -1,3 +1,11 @@
+Equipo G04-8
+- Andres Felipe Baez 
+- Juan Felipe Bernal Gutiérrez - bernalcodes
+- Joaquin Perez Puello - Joaquinpp
+- Jhonatan valencia tabares -Jhonavt
+- Luis Leonardo Cruz uribe - luis-leonardo-cruz  
+
+
 Compartir github tener listo antes del martes (leonardo)
 redactar informe de restrospectiva.
 
@@ -25,3 +33,6 @@ iv. Presentación MVC (definir con el tutor)
 2. Navegación entre interfases
 v. Informe de retrospectiva
 vi. Historias de usuario a desarrollar en el sprint 2. (Trello)
+
+
+
