@@ -2,7 +2,7 @@ Compartir github tener listo antes del martes (leonardo)
 redactar informe de restrospectiva.
 
 andres felipe Baez y jhonatan comparten componentes de GUI
-Juan felipe Bernal 
+Juan felipe Bernal genera el mockup
 
 joaquin generar preliminar de usuarios
 
