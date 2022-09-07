@@ -46,7 +46,7 @@ public class VehicleController {
         Vehicle existentVehicle = service.getVehicleById(id);
         existentVehicle.setId(id);
         existentVehicle.setPlate(vehicle.getPlate());
-        existentVehicle.setDate(vehicle.getDate());
+		existentVehicle.setEntry(vehicle.getEntry());
         existentVehicle.setBrand(vehicle.getBrand());
         existentVehicle.setModel(vehicle.getModel());
         existentVehicle.setColor(vehicle.getColor());
@@ -56,6 +56,19 @@ public class VehicleController {
 
         return "redirect:/vehicles/";
     }
+
+	@GetMapping("/vehicles/retire/{id}")
+	public String retireVehicle(@PathVariable Long id, Model model) {
+		model.addAttribute("vehicle", service.getVehicleById(id));
+		return "retire_vehicle";
+	}
+
+	// TODO: generatePayment() needs to be implemented
+	// One idea would be to @PostMap to retire/ in order to display the amount
+	@PostMapping("/vehicles/retire/{id}")
+	public String generatePayment(@PathVariable Long id, Model model) {
+		return null;
+	}
 
     @GetMapping("/vehicles/{id}")
     public String deleteVehicle(@PathVariable Long id) {

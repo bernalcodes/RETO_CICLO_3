@@ -24,10 +24,15 @@ public class Vehicle implements Serializable {
     @Column(name = "plate", nullable = false)
     private String plate;
 
-    @Column(name = "date", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private Date date;
+	@Column(name = "entry_time", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date entry;
+
+	@Column(name = "exit_time", nullable = true, columnDefinition = "TIMESTAMP NULL DEFAULT NULL")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date exit;
 
     @Column(name = "type", nullable = false, length = 15)
     private String type;
@@ -44,13 +49,19 @@ public class Vehicle implements Serializable {
     @Column(name = "owner", nullable = false, length = 50)
     private String owner;
 
+	// TODO: implement "payment" column and methods
+	// One idea would be to initialize the value with either 0 or null
+	// Might work similarly to exit
+
     public Vehicle() {
+		this.exit = null;
     }
 
-    public Vehicle(String plate, Date date, String type, String brand, String model, String color,
+	public Vehicle(String plate, Date entry, String type, String brand, String model, String color,
             String owner) {
         this.plate = plate;
-        this.date = date;
+		this.entry = entry;
+		this.exit = null;
         this.type = type;
         this.brand = brand;
         this.model = model;
@@ -58,11 +69,12 @@ public class Vehicle implements Serializable {
         this.owner = owner;
     }
 
-    public Vehicle(Long id, String plate, Date date, String type, String brand, String model, String color,
+	public Vehicle(Long id, String plate, Date entry, String type, String brand, String model, String color,
             String owner) {
         this.id = id;
         this.plate = plate;
-        this.date = date;
+		this.entry = entry;
+		this.exit = null;
         this.type = type;
         this.brand = brand;
         this.model = model;
@@ -86,12 +98,20 @@ public class Vehicle implements Serializable {
         this.plate = plate;
     }
 
-    public Date getDate() {
-        return date;
+	public Date getEntry() {
+		return entry;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+	public void setEntry(Date entry_datetime) {
+		this.entry = entry_datetime;
+	}
+
+	public Date getExit() {
+		return exit;
+	}
+
+	public void setExit(Date exit) {
+		this.exit = exit;
     }
 
     public String getType() {
