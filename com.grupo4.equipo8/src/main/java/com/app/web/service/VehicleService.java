@@ -16,4 +16,7 @@ public interface VehicleService {
     public Vehicle updateVehicle(Vehicle vehicle);
 
     public void deleteVehicle(Long id);
+
+	// TODO: implementation of business logic
+	public Double calculatePayment();
 }

@@ -1,0 +1,22 @@
+# TODO list for the project
+
+- Work on business logic:
+	- Get entry time for each vehicle and save it on db **(DONE)**
+	- Get exit time for each vehicle and save it on db **(DONE)**
+	- Calculate payment
+		- Define parking rates **(DONE)**
+			- Minute = $80 COP
+			- Day = $40.000 COP
+			- Month = $220.000
+	- Parse payment as string to return to front-end **(DONE)**
+	- Review datetime datatype used for entity: change for `LocalDateTime`
+	- Review datatype used to store payment on db
+- Return payment amount via modal or flashed message on frontend
+- Implement team-developed UI
+- Implement user creation by root user
+	- Form with corresponding `html` file
+- Implementation of session handling
+	- Implement login interface
+	- JWT
+- Sanitization of inputs
+- Basic security

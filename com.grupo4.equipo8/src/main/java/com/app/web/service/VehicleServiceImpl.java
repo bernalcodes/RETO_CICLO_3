@@ -43,4 +43,9 @@ public class VehicleServiceImpl implements VehicleService {
     public void deleteVehicle(Long id) {
         repository.deleteById(id);
     }
+
+	@Override
+	public Double calculatePayment() {
+		return null;
+	}
 }

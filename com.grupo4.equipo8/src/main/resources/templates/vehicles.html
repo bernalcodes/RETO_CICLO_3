@@ -59,7 +59,7 @@
                     <td class="text-center align-middle" th:text="${vehicle.owner}"></td>
                     <td class="text-center align-middle">
                         <a class="btn btn-primary m-1" th:href="@{/vehicles/edit/{id}(id = ${vehicle.id})}">Editar</a>
-                        <a class="btn btn-secondary m-1" th:href="@{/vehicles/retire/{id}(id = ${vehicle.id})}">Retirar</a>
+                        <a class="btn btn-secondary m-1" th:href="@{/vehicles/{id}(id = ${vehicle.id})/retire}">Retirar</a>
                         <a class="btn btn-danger m-1" th:href="@{/vehicles/{id}(id = ${vehicle.id})}">Eliminar</a>
                     </td>
                 </tr>

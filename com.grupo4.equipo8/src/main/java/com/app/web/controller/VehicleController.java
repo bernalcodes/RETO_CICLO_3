@@ -65,7 +65,7 @@ public class VehicleController {
 
 	// TODO: generatePayment() needs to be implemented
 	// One idea would be to @PostMap to retire/ in order to display the amount
-	@PostMapping("/vehicles/retire/{id}")
+	@PostMapping("/vehicles/{id}/retire")
 	public String generatePayment(@PathVariable Long id, Model model) {
 		return null;
 	}

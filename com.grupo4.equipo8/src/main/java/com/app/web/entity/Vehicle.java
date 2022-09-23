@@ -52,16 +52,16 @@ public class Vehicle implements Serializable {
 	// TODO: implement "payment" column and methods
 	// One idea would be to initialize the value with either 0 or null
 	// Might work similarly to exit
+	@Column(name = "payment", nullable = true, columnDefinition = "INT DEFAULT 0")
+	private Integer payment;
 
-    public Vehicle() {
-		this.exit = null;
+	public Vehicle() {
     }
 
 	public Vehicle(String plate, Date entry, String type, String brand, String model, String color,
             String owner) {
         this.plate = plate;
 		this.entry = entry;
-		this.exit = null;
         this.type = type;
         this.brand = brand;
         this.model = model;
@@ -74,7 +74,6 @@ public class Vehicle implements Serializable {
         this.id = id;
         this.plate = plate;
 		this.entry = entry;
-		this.exit = null;
         this.type = type;
         this.brand = brand;
         this.model = model;
@@ -153,4 +152,12 @@ public class Vehicle implements Serializable {
     public void setOwner(String owner) {
         this.owner = owner;
     }
+
+	public Integer getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Integer payment) {
+		this.payment = payment;
+	}
 }
