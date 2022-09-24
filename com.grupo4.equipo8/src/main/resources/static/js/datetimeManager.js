@@ -23,6 +23,10 @@ function setTime() {
 	document.getElementById("holder").value = finalDate;
 
 	console.log(finalDate);
+
+	document.getElementById("paymentGenerator").disabled = false;
+
+	console.log("Payment enabled");
 }
 
 function minTwoDigits(n) {

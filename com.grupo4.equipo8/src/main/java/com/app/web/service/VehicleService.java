@@ -1,5 +1,6 @@
 package com.app.web.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.app.web.entity.Vehicle;
@@ -17,6 +18,5 @@ public interface VehicleService {
 
     public void deleteVehicle(Long id);
 
-	// TODO: implementation of business logic
-	public Double calculatePayment();
+	public Integer calculatePayment(LocalDateTime entry, LocalDateTime exit);
 }

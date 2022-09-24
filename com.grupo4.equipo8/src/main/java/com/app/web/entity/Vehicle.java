@@ -1,7 +1,7 @@
 package com.app.web.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,13 +24,11 @@ public class Vehicle implements Serializable {
 
 	@Column(name = "entry_time", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date entry;
+	private LocalDateTime entry;
 
-	@Column(name = "exit_time", nullable = true, columnDefinition = "TIMESTAMP NULL DEFAULT NULL")
+	@Column(name = "exit_time", nullable = true, columnDefinition = "TIMESTAMP DEFAULT NULL")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date exit;
+	private LocalDateTime exit;
 
     @Column(name = "type", nullable = false, length = 15)
     private String type;
@@ -49,16 +45,13 @@ public class Vehicle implements Serializable {
     @Column(name = "owner", nullable = false, length = 50)
     private String owner;
 
-	// TODO: implement "payment" column and methods
-	// One idea would be to initialize the value with either 0 or null
-	// Might work similarly to exit
 	@Column(name = "payment", nullable = true, columnDefinition = "INT DEFAULT 0")
 	private Integer payment;
 
 	public Vehicle() {
     }
 
-	public Vehicle(String plate, Date entry, String type, String brand, String model, String color,
+	public Vehicle(String plate, LocalDateTime entry, String type, String brand, String model, String color,
             String owner) {
         this.plate = plate;
 		this.entry = entry;
@@ -69,7 +62,7 @@ public class Vehicle implements Serializable {
         this.owner = owner;
     }
 
-	public Vehicle(Long id, String plate, Date entry, String type, String brand, String model, String color,
+	public Vehicle(Long id, String plate, LocalDateTime entry, String type, String brand, String model, String color,
             String owner) {
         this.id = id;
         this.plate = plate;
@@ -97,19 +90,19 @@ public class Vehicle implements Serializable {
         this.plate = plate;
     }
 
-	public Date getEntry() {
+	public LocalDateTime getEntry() {
 		return entry;
     }
 
-	public void setEntry(Date entry_datetime) {
+	public void setEntry(LocalDateTime entry_datetime) {
 		this.entry = entry_datetime;
 	}
 
-	public Date getExit() {
+	public LocalDateTime getExit() {
 		return exit;
 	}
 
-	public void setExit(Date exit) {
+	public void setExit(LocalDateTime exit) {
 		this.exit = exit;
     }
 

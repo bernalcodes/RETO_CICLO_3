@@ -23,28 +23,28 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <h1>Vehicle list</h1>
+    <div class="container container-fluid">
+        <div class="row text-center">
+            <h1 class="mt-5 mb-5">Lista de vehículos</h1>
         </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <a th:href="@{/vehicles/register}" class="btn btn-primary btn-sm m3">Add a vehicle!</a>
+        <div class="row text-center">
+            <div>
+                <a th:href="@{/vehicles/register}" class="btn btn-primary btn-lg m3">Ingresar vehículo</a>
             </div>
         </div>
         <br>
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered mt-5">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Placa</th>
-                    <th>Hora de entrada</th>
-                    <th>Tipo</th>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Color</th>
-                    <th>Dueño</th>
-                    <th>Opciones</th>
+                    <th class="text-center align-middle">ID</th>
+                    <th class="text-center align-middle">Placa</th>
+                    <th class="text-center align-middle">Hora de entrada</th>
+                    <th class="text-center align-middle">Tipo</th>
+                    <th class="text-center align-middle">Marca</th>
+                    <th class="text-center align-middle">Modelo</th>
+                    <th class="text-center align-middle">Color</th>
+                    <th class="text-center align-middle">Dueño</th>
+                    <th class="text-center align-middle">Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,15 +52,14 @@
                     <th class="text-center align-middle" th:text="${vehicle.id}"></th>
                     <td class="text-center align-middle" th:text="${vehicle.plate}"></td>
                     <td class="text-center align-middle" th:text="${vehicle.entry}"></td>
-                    <td class="text-center align-middle" th:text="${vehicle.type}"></td>
+                    <td class="text-center align-middle" th:text="${#strings.capitalize(vehicle.type)}"></td>
                     <td class="text-center align-middle" th:text="${vehicle.brand}"></td>
                     <td class="text-center align-middle" th:text="${vehicle.model}"></td>
                     <td class="text-center align-middle" th:text="${vehicle.color}"></td>
                     <td class="text-center align-middle" th:text="${vehicle.owner}"></td>
                     <td class="text-center align-middle">
                         <a class="btn btn-primary m-1" th:href="@{/vehicles/edit/{id}(id = ${vehicle.id})}">Editar</a>
-                        <a class="btn btn-secondary m-1" th:href="@{/vehicles/{id}(id = ${vehicle.id})/retire}">Retirar</a>
-                        <a class="btn btn-danger m-1" th:href="@{/vehicles/{id}(id = ${vehicle.id})}">Eliminar</a>
+                        <a class="btn btn-secondary m-1" th:href="@{/vehicles/retire/{id}(id = ${vehicle.id})}">Salida</a>
                     </td>
                 </tr>
             </tbody>

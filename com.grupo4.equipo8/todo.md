@@ -9,14 +9,14 @@
 			- Day = $40.000 COP
 			- Month = $220.000
 	- Parse payment as string to return to front-end **(DONE)**
-	- Review datetime datatype used for entity: change for `LocalDateTime`
-	- Review datatype used to store payment on db
-- Return payment amount via modal or flashed message on frontend
+	- Review datetime datatype used for entity: change for `LocalDateTime` **(DONE)**
+	- Review datatype used to store payment on db **(DONE)**
+- Return payment amount via modal or flashed message on frontend **(DONE)**
 - Implement team-developed UI
 - Implement user creation by root user
 	- Form with corresponding `html` file
 - Implementation of session handling
-	- Implement login interface
-	- JWT
+	- Implementation login interface
+	- JWT and session handling
 - Sanitization of inputs
 - Basic security

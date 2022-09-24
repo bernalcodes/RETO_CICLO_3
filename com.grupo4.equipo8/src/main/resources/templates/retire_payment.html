@@ -24,37 +24,33 @@
     </nav>
     <br>
     <div class="container container-fluid">
-		<h1 class="text-center m-1">Salida de vehículo del parqueadero</h1>
+		<h1 class="text-center m-1">Resumen de estadía</h1>
 		<div class="row d-flex justify-content-center">
-			<form class="w-75" th:action="@{/vehicles/retire/payment/{id}(id = ${vehicle.id})}" th:object="${vehicle}" method="POST">
+			<form class="w-75" th:action="@{/vehicles/{id}(id = ${vehicle.id})}" th:object="${vehicle}" method="POST">
 				<div class="row g-3 d-flex justify-content-between mt-1">
 					<div class="col-auto">
 						<label class="form-label" for="">Placa: </label>
 					</div>
-					<div class="col-auto float-right">
-						<input class="form-control" type="text" name="name" th:field="*{plate}" id="" placeholder="Type in the vehicle's plate" disabled>
+					<div class="col-auto">
+						<input class="form-control" type="text" name="name" th:field="*{plate}" disabled>
 					</div>
 				</div>
-				
+	
 				<div class="row g-3 d-flex justify-content-between mt-1">
 					<div class="col-auto">
 						<label class="form-label" for="">Fecha y hora de entrada: </label>
 					</div>
 					<div class="col-auto">
-						<input class="form-control" type="text" name="entry"  th:field="*{entry}" id="entrada" disabled>
+						<input class="form-control" type="text" name="entrada"  th:field="*{entry}" disabled>
 					</div>
 				</div>
 	
-				<div class="row g-3 d-flex justify-content-between align-items-center mt-1">
-					<div class="col-sm">
+				<div class="row g-3 d-flex justify-content-between mt-1">
+					<div class="col-auto">
 						<label class="form-label" for="">Fecha y hora de salida: </label>
 					</div>
-					<div class="col-sm">
-						<input class="form-control" type="text" name="holder" id="holder" placeholder="Register the vehicle's exit datetime" disabled>
-					</div>
-					<input type="hidden" name="exit" th:field="*{exit}" id="datetimeManager" value="">
-					<div class="col-sm text-center">
-						<input class="btn btn-primary m-2 align-items-center" type="button" value="Registrar hora" th:onclick="setTime()">
+					<div class="col-auto">
+						<input class="form-control" type="text" name="entrada"  th:field="*{exit}" disabled>
 					</div>
 				</div>
 	
@@ -63,7 +59,7 @@
 						<label class="form-label" for="">Tipo de vehículo: </label>
 					</div>
 					<div class="col-auto">
-						<input class="form-control" type="text" name="type"  th:value="${#strings.capitalize(vehicle.type)}" disabled>
+						<input class="form-control" type="text" name="entrada"  th:value="${#strings.capitalize(vehicle.type)}" disabled>
 					</div>
 				</div>
 	
@@ -102,9 +98,18 @@
 						<input class="form-control" type="text" name="owner" th:field="*{owner}" disabled>
 					</div>
 				</div>
-				<br>
-				<div class="box-footer text-center mt-1">
-					<input type="submit" class="btn btn-success" value="Generar pago" id="paymentGenerator" disabled>
+	
+				<div class="row g-3 d-flex justify-content-between mt-1">
+					<div class="col-auto">
+						<label class="form-label" for="">Total a pagar: </label>
+					</div>
+					<div class="col-auto">
+						<input class="form-control" th:value="${paymentString}" disabled>
+					</div>
+				</div>
+				
+				<div class="text-center">
+					<button type="submit" class="btn btn-success">Realizar pago</button>
 				</div>
 			</form>
 		</div>
