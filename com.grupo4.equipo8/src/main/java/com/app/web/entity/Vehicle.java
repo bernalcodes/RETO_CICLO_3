@@ -1,7 +1,7 @@
 package com.app.web.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,10 +22,13 @@ public class Vehicle implements Serializable {
     @Column(name = "plate", nullable = false)
     private String plate;
 
-    @Column(name = "date", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private Date date;
+	@Column(name = "entry_time", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime entry;
+
+	@Column(name = "exit_time", nullable = true, columnDefinition = "TIMESTAMP DEFAULT NULL")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime exit;
 
     @Column(name = "type", nullable = false, length = 15)
     private String type;
@@ -44,13 +45,16 @@ public class Vehicle implements Serializable {
     @Column(name = "owner", nullable = false, length = 50)
     private String owner;
 
-    public Vehicle() {
-    }
+	@Column(name = "payment", nullable = true, columnDefinition = "INT DEFAULT 0")
+	private Integer payment;
 
-    public Vehicle(String plate, Date date, String type, String brand, String model, String color,
+	public Vehicle() {
+	}
+
+	public Vehicle(String plate, LocalDateTime entry, String type, String brand, String model, String color,
             String owner) {
         this.plate = plate;
-        this.date = date;
+		this.entry = entry;
         this.type = type;
         this.brand = brand;
         this.model = model;
@@ -58,11 +62,11 @@ public class Vehicle implements Serializable {
         this.owner = owner;
     }
 
-    public Vehicle(Long id, String plate, Date date, String type, String brand, String model, String color,
+	public Vehicle(Long id, String plate, LocalDateTime entry, String type, String brand, String model, String color,
             String owner) {
         this.id = id;
         this.plate = plate;
-        this.date = date;
+		this.entry = entry;
         this.type = type;
         this.brand = brand;
         this.model = model;
@@ -86,12 +90,20 @@ public class Vehicle implements Serializable {
         this.plate = plate;
     }
 
-    public Date getDate() {
-        return date;
+	public LocalDateTime getEntry() {
+		return entry;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+	public void setEntry(LocalDateTime entry_datetime) {
+		this.entry = entry_datetime;
+	}
+
+	public LocalDateTime getExit() {
+		return exit;
+	}
+
+	public void setExit(LocalDateTime exit) {
+		this.exit = exit;
     }
 
     public String getType() {
@@ -133,4 +145,12 @@ public class Vehicle implements Serializable {
     public void setOwner(String owner) {
         this.owner = owner;
     }
+
+	public Integer getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Integer payment) {
+		this.payment = payment;
+	}
 }

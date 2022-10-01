@@ -24,85 +24,90 @@
     </nav>
     <br>
     <div class="container container-fluid">
-		<h1 class="text-center m-2">Actualizar información de un vehículo</h1>
-        <div class="row d-flex justify-content-center">
-			<form class="w-75" th:action="@{/vehicles/edit/save/{id}(id = ${vehicle.id})}" th:object="${vehicle}" method="PUT">
-				<div class="row g-3 d-flex justify-content-between mt-1 mb-2">
+		<h1 class="text-center m-1">Salida de vehículo del parqueadero</h1>
+		<div class="row d-flex justify-content-center">
+			<form class="w-75" th:action="@{/vehicles/retire/payment/{id}(id = ${vehicle.id})}" th:object="${vehicle}" method="POST">
+				<div class="row g-3 d-flex justify-content-between mt-1">
 					<div class="col-auto">
 						<label class="form-label" for="">Placa: </label>
 					</div>
-					<div class="col-auto">
-						<input class="form-control" type="text" name="name" th:field="*{plate}" id="" required>
+					<div class="col-auto float-right">
+						<input class="form-control" type="text" name="name" th:field="*{plate}" id="" placeholder="Type in the vehicle's plate" disabled>
 					</div>
 				</div>
-
-				<div class="row g-3 d-flex justify-content-between mt-1 mb-2">
+				
+				<div class="row g-3 d-flex justify-content-between mt-1">
 					<div class="col-auto">
 						<label class="form-label" for="">Fecha y hora de entrada: </label>
 					</div>
-					<input type="hidden" name="date" th:field="*{entry}" id="datetimeManager" value="">
 					<div class="col-auto">
-						<input class="form-control" th:field="*{entry}" type="text" name="holder"  id="holder" disabled>
+						<input class="form-control" type="text" name="entry"  th:field="*{entry}" id="entrada" disabled>
 					</div>
 				</div>
-
-				<div class="row g-3 d-flex justify-content-around mt-1 mb-2">
+	
+				<div class="row g-3 d-flex justify-content-between align-items-center mt-1">
 					<div class="col-sm">
+						<label class="form-label" for="">Fecha y hora de salida: </label>
+					</div>
+					<div class="col-sm">
+						<input class="form-control" type="text" name="holder" id="holder" placeholder="Register the vehicle's exit datetime" disabled>
+					</div>
+					<input type="hidden" name="exit" th:field="*{exit}" id="datetimeManager" value="">
+					<div class="col-sm text-center">
+						<input class="btn btn-primary m-2 align-items-center" type="button" value="Registrar hora" th:onclick="setTime()">
+					</div>
+				</div>
+	
+				<div class="row g-3 d-flex justify-content-between mt-1">
+					<div class="col-auto">
 						<label class="form-label" for="">Tipo de vehículo: </label>
 					</div>
-					<div class="col-sm d-flex justify-content-around align-items-center">
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="type" id="type1" th:field="*{type}" value="carro">
-							<label class="form-check-label" for="type1">Carro</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="type" id="type2" th:field="*{type}" value="moto">
-							<label class="form-check-label" for="type2">Moto</label>
-						</div>
+					<div class="col-auto">
+						<input class="form-control" type="text" name="type"  th:value="${#strings.capitalize(vehicle.type)}" disabled>
 					</div>
 				</div>
-
-				<div class="row g-3 d-flex justify-content-between mt-1 mb-2">
+	
+				<div class="row g-3 d-flex justify-content-between mt-1">
 					<div class="col-auto">
 						<label class="form-label" for="">Marca: </label>
 					</div>
 					<div class="col-auto">
-						<input class="form-control" type="text" name="brand" th:field="*{brand}" id="" required>
+						<input class="form-control" type="text" name="brand" th:field="*{brand}" disabled>
 					</div>
 				</div>
-
-				<div class="row g-3 d-flex justify-content-between mt-1 mb-2">
+	
+				<div class="row g-3 d-flex justify-content-between mt-1">
 					<div class="col-auto">
 						<label class="form-label" for="">Modelo: </label>
 					</div>
 					<div class="col-auto">
-						<input class="form-control" type="text" name="model" th:field="*{model}" id="" required>
+						<input class="form-control" type="text" name="model" th:field="*{model}" disabled>
 					</div>
 				</div>
-
-				<div class="row g-3 d-flex justify-content-between mt-1 mb-2">
+	
+				<div class="row g-3 d-flex justify-content-between mt-1">
 					<div class="col-auto">
 						<label class="form-label" for="">Color: </label>
 					</div>
 					<div class="col-auto">
-						<input class="form-control" type="text" name="color" th:field="*{color}" id="" required>
+						<input class="form-control" type="text" name="color" th:field="*{color}" disabled>
 					</div>
 				</div>
-
-				<div class="row g-3 d-flex justify-content-between mt-1 mb-2">
+	
+				<div class="row g-3 d-flex justify-content-between mt-1">
 					<div class="col-auto">
 						<label class="form-label" for="">Dueño: </label>
 					</div>
 					<div class="col-auto">
-						<input class="form-control" type="text" name="owner" th:field="*{owner}" id="" required>
+						<input class="form-control" type="text" name="owner" th:field="*{owner}" disabled>
 					</div>
 				</div>
 				<br>
-				<div class="box-footer text-center">
-					<button type="submit" class="btn btn-success">Actualizar vehículo</button>
+				<div class="box-footer text-center mt-1">
+					<input type="submit" class="btn btn-success" value="Generar pago" id="paymentGenerator" disabled>
 				</div>
 			</form>
-        </div>
+		</div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script type="text/javascript" th:src="@{/js/datetimeManager.js}"></script>
