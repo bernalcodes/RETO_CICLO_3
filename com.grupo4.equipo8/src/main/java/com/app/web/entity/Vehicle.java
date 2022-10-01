@@ -49,7 +49,7 @@ public class Vehicle implements Serializable {
 	private Integer payment;
 
 	public Vehicle() {
-    }
+	}
 
 	public Vehicle(String plate, LocalDateTime entry, String type, String brand, String model, String color,
             String owner) {

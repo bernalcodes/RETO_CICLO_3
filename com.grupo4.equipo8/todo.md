@@ -12,7 +12,8 @@
 	- Review datetime datatype used for entity: change for `LocalDateTime` **(DONE)**
 	- Review datatype used to store payment on db **(DONE)**
 - Return payment amount via modal or flashed message on frontend **(DONE)**
-- Implement team-developed UI
+- Implement history table to register payments made
+- Implement team-developed UI (TBD)
 - Implement user creation by root user
 	- Form with corresponding `html` file
 - Implementation of session handling

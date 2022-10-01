@@ -26,7 +26,7 @@
     <div class="container container-fluid">
 		<h1 class="text-center m-2">Actualizar información de un vehículo</h1>
         <div class="row d-flex justify-content-center">
-			<form class="w-75" th:action="@{/vehicles/{id}(id = ${vehicle.id})}" th:object="${vehicle}" method="POST">
+			<form class="w-75" th:action="@{/vehicles/edit/save/{id}(id = ${vehicle.id})}" th:object="${vehicle}" method="PUT">
 				<div class="row g-3 d-flex justify-content-between mt-1 mb-2">
 					<div class="col-auto">
 						<label class="form-label" for="">Placa: </label>
