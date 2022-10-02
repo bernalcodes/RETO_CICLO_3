@@ -1,0 +1,17 @@
+Equipo G04-8
+- Andres Felipe Baez 
+- Juan Felipe Bernal Gutiérrez - bernalcodes
+- Joaquin Perez Puello - Joaquinpp
+- Jhonatan valencia tabares -Jhonavt
+- Luis Leonardo Cruz uribe - luis-leonardo-cruz  
+
+
+- se aclaran dudas sobre requerimientos para el MVC
+-Historias de usuario en trello
+  - historias de usuario UX
+  - historias de usuario tecnicas (logica de negocio)
+
+
+
+
+
