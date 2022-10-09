@@ -27,10 +27,10 @@ public class User {
 	@Column(nullable = false, length = 64)
 	private String password;
 
-	@Column(nullable = false, unique = true, length = 20)
+	@Column(nullable = false, unique = false, length = 20)
 	private String firstname;
 
-	@Column(nullable = false, unique = true, length = 20)
+	@Column(nullable = false, unique = false, length = 20)
 	private String lastname;
 
 	@ManyToMany(fetch = FetchType.EAGER)

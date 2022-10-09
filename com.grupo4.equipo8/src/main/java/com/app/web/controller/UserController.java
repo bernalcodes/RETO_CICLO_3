@@ -46,13 +46,12 @@ public class UserController {
 
 	@PostMapping("/signup")
 	public String processRegistration(User user) {
-		service.saveUserWithDefaultRole(user);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
 		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			service.saveUserWithDefaultRole(user);
 			return "redirect:/login?success";
 		}
-
+		service.saveUser(user);
 		return "redirect:/index";
 	}
 
