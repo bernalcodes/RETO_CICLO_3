@@ -75,10 +75,17 @@ public class VehicleController {
 		return "vehicle_exit";
 	}
 
+	@PostMapping("/vehicles/retire/{id}")
+	public String retireVehiclePrePayment(@PathVariable Long id, @ModelAttribute("vehicle") Vehicle vehicle,
+			Model model) {
+		Vehicle existentVehicle = service.getVehicleById(id);
+		existentVehicle.setExit(vehicle.getExit());
+		return "payment_exit";
+	}
+
 	@PostMapping("/vehicles/retire/payment/{id}")
 	public String calculatePayment(@PathVariable Long id, @ModelAttribute("vehicle") Vehicle vehicle, Model model) {
 		Vehicle existentVehicle = service.getVehicleById(id);
-		existentVehicle.setExit(vehicle.getExit());
 		existentVehicle.setPayment(service.calculatePayment(existentVehicle.getEntry(), existentVehicle.getExit()));
 
 		service.updateVehicle(existentVehicle);
@@ -100,6 +107,6 @@ public class VehicleController {
 
 		service.deleteVehicle(id);
 
-		return "payment_exit";
+		return "redirect:/vehicles";
 	}
 }
