@@ -80,16 +80,18 @@ public class VehicleController {
 			Model model) {
 		Vehicle existentVehicle = service.getVehicleById(id);
 		existentVehicle.setExit(vehicle.getExit());
+		existentVehicle.setPayment(service.calculatePayment(existentVehicle.getEntry(), existentVehicle.getExit()));
+
+		service.updateVehicle(existentVehicle);
+
 		model.addAttribute("vehicle", existentVehicle);
+
 		return "payment_exit";
 	}
 
 	@PostMapping("/vehicles/retire/payment/{id}")
-	public String calculatePayment(@PathVariable Long id, @ModelAttribute("vehicle") Vehicle vehicle, Model model) {
+	public String calculatePayment(@PathVariable Long id, Model model) {
 		Vehicle existentVehicle = service.getVehicleById(id);
-		existentVehicle.setPayment(service.calculatePayment(existentVehicle.getEntry(), existentVehicle.getExit()));
-
-		service.updateVehicle(existentVehicle);
 
 		String paymentString = NumberFormat.getCurrencyInstance(new Locale("en", "US"))
 				.format(existentVehicle.getPayment()) + " COP";
