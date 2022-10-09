@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+    lang="en"
+>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Parking Manager Demo</title>
+        <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.png}" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <nav sec:authorize="isAuthenticated()" class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a th:href="@{/index}" class="navbar-brand ms-4">
+                <img
+                    width="50%"
+                    height="50%"
+                    th:src="@{/assets/parking_manager_brand.png}"
+                />
+            </a>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a th:href="@{/index}" class="nav-link">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/vehicles/register}" class="nav-link"
+                            >Ingreso de Vehículo</a
+                        >
+                    </li>
+                    <li
+                        class="nav-item"
+                        sec:authorize="hasAnyAuthority('ROOT', 'ADMIN')"
+                    >
+                        <a th:href="@{/history}" class="nav-link">Historial</a>
+                    </li>
+                    <li
+                        class="nav-item"
+                        sec:authorize="hasAnyAuthority('ROOT', 'ADMIN')"
+                    >
+                        <a th:href="@{/users}" class="nav-link"
+                            >Usuarios</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </nav>
+		
+        <div class="container container-fluid">
+            <h1 class="text-center m-5">Creación de Usuarios</h1>
+            <div class="row d-flex justify-content-center">
+                <form
+                    class="w-75"
+                    th:action="@{/signup}"
+                    th:object="${user}"
+                    method="POST"
+                >
+                    <div
+                        class="row g-3 d-flex justify-content-between mt-1 mb-2"
+                    >
+                        <div class="col-auto">
+                            <label class="form-label" for="">Nombre: </label>
+                        </div>
+                        <div class="col-auto">
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="firstname"
+                                th:field="*{Firstname}"
+                                id=""
+                                placeholder="Escriba su nombre"
+                                minlength="2"
+                                max="20"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div
+                        class="row g-3 d-flex justify-content-between mt-1 mb-2"
+                    >
+                        <div class="col-auto">
+                            <label class="form-label" for="">Apellido: </label>
+                        </div>
+                        <div class="col-auto">
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="lastname"
+                                th:field="*{Lastname}"
+                                id=""
+                                placeholder="Escriba su apellido"
+                                minlength="2"
+                                max="20"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div
+                        class="row g-3 d-flex justify-content-between mt-1 mb-2"
+                    >
+                        <div class="col-auto">
+                            <label class="form-label" for=""
+                                >Nombre de usuario:
+                            </label>
+                        </div>
+                        <div class="col-auto">
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="username"
+                                th:field="*{Username}"
+                                id=""
+                                placeholder="Escriba su nombre de usuario"
+                                minlength="5"
+                                max="10"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div
+                        class="row g-3 d-flex justify-content-between mt-1 mb-2"
+                    >
+                        <div class="col-auto">
+                            <label class="form-label" for=""
+                                >Contraseña:
+                            </label>
+                        </div>
+                        <div class="col-auto">
+                            <input
+                                class="form-control"
+                                type="password"
+                                name="password"
+                                th:field="*{Password}"
+                                id=""
+                                placeholder="Escriba su contraseña"
+                                minlength="6"
+                                max="15"
+                                required
+                            />
+                        </div>
+                    </div>
+
+					<div
+                        sec:authorize="hasAnyAuthority('ROOT')" class="row g-3 d-flex justify-content-around mt-1 mb-2"
+                    >
+                        <div class="col-sm">
+                            <label class="form-label" for=""
+                                >Roles asignados:
+                            </label>
+                        </div>
+						<div class="col-sm d-flex justify-content-around align-items-center">
+							<th:block th:each="role : ${roles}">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" th:field = "*{roles}" th:value="${role.id}" th:text="${role.name}">
+							</div>	
+							</th:block>
+						</div>
+                    </div>
+
+                    <br />
+
+                    <div class="box-footer text-center">
+                        <button type="submit" class="btn btn-primary">
+                            Crear usuario
+                        </button>
+                    </div>
+
+					<div sec:authorize="!isAuthenticated()" class="box-footer text-center m-5">
+                        <h6>
+							Si ya cuenta con un usuario, <span><a th:href="@{/login}">inicie sesión aquí</a></span>.
+						</h6>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            type="text/javascript"
+            th:src="@{/js/datetimeManager.js}"
+        ></script>
+    </body>
+</html>

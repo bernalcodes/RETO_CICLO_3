@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+    lang="en"
+>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Parking Manager | Home</title>
+        <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.png}" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a th:href="@{/index}" class="navbar-brand ms-4">
+                <img
+                    width="40%"
+                    height="40%"
+                    th:src="@{/assets/parking_manager_brand.png}"
+                />
+            </a>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a th:href="@{/index}" class="nav-link">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/vehicles/register}" class="nav-link"
+                            >Ingreso de Vehículo</a
+                        >
+                    </li>
+                    <li
+                        class="nav-item"
+                        sec:authorize="hasAnyAuthority('ROOT', 'ADMIN')"
+                    >
+                        <a th:href="@{/history}" class="nav-link">Historial</a>
+                    </li>
+                    <li
+                        class="nav-item"
+                        sec:authorize="hasAnyAuthority('ROOT', 'ADMIN')"
+                    >
+                        <a th:href="@{/users}" class="nav-link"
+                            >Usuarios</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container container-fluid">
+            <div
+                th:if="${param.success}"
+                class="alert alert-success alert-dismissible fade show mt-4"
+                role="alert"
+            >
+                Ha iniciado sesión exitosamente
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                ></button>
+            </div>
+
+            <div class="row text-center">
+                <h1 class="mt-2 mb-2">
+                    Bienvenido,
+                    <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+                </h1>
+            </div>
+            <div class="row text-center mb-2">
+                <h4>
+                    Sus roles asignados son:
+                    <span sec:authentication="principal.authorities"></span>
+                </h4>
+            </div>
+            <div
+                class="container container-fluid d-flex justify-content-around mb-3"
+            >
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem">
+                            <img
+                                th:src="@{/assets/parking_lot.jpg}"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Gestor de parqueadero
+                                </h5>
+                                <p class="card-text">
+                                    Módulo de gestión de ingresos y salidas de
+                                    vehículos al parqueadero
+                                </p>
+                                <a
+                                    th:href="@{/vehicles}"
+                                    class="btn btn-primary"
+                                    >Ingresar</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div
+                            sec:authorize="hasAnyAuthority('ROOT', 'ADMIN')"
+                            class="card"
+                            style="width: 18rem"
+                        >
+                            <img
+                                th:src="@{/assets/history.jpg}"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Historial del parqueadero
+                                </h5>
+                                <p class="card-text">
+                                    Módulo de gestión de registro histórico de
+                                    ingresos, salidas y cobros del parqueadero
+                                </p>
+                                <a th:href="@{/history}" class="btn btn-primary"
+                                    >Ingresar</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div
+                            sec:authorize="hasAnyAuthority('ROOT', 'ADMIN')"
+                            class="card"
+                            style="width: 18rem"
+                        >
+                            <img
+                                th:src="@{/assets/users.png}"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                            <div class="card-body">
+                                <h5 class="card-title">Gestión de usuarios</h5>
+                                <p class="card-text">
+                                    Módulo de gestión de usuarios autorizados
+                                    para gestionar el parqueadero
+                                </p>
+                                <a th:href="@{/users}" class="btn btn-primary"
+                                    >Ingresar</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center mt-2">
+                <div>
+                    <a th:href="@{/logout}" class="btn btn-danger btn-md"
+                        >Cerrar sesión</a
+                    >
+                </div>
+            </div>
+            <br />
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

@@ -12,4 +12,6 @@ public interface HistoryService {
 	public History getEntryByPlate(String plate);
 
 	public void storeEntry(History entry);
+
+	public Double calculateTotal(List<History> history);
 }

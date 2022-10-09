@@ -6,7 +6,6 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,28 +30,27 @@ public class VehicleController {
 	public String registerVehicleForm(Model model) {
 		Vehicle vehicle = new Vehicle();
 		model.addAttribute("vehicle", vehicle);
-		return "register_vehicle";
+		return "vehicle_registration";
 	}
 
-	@PostMapping("/vehicles/")
+	@PostMapping("/vehicles")
 	public String storeVehicle(@ModelAttribute("vehicle") Vehicle vehicle) {
 		service.storeVehicle(vehicle);
-		return "redirect:/vehicles/";
+		return "redirect:/vehicles";
 	}
 
 	// READ
-	@CrossOrigin
-	@GetMapping("/vehicles/")
+	@GetMapping("/vehicles")
 	public String listVehicles(Model model) {
 		model.addAttribute("vehicles", service.listAllVehicles());
-		return "vehicles";
+		return "vehicle_list";
 	}
 
 	// UPDATE
     @GetMapping("/vehicles/edit/{id}")
     public String editVehicleForm(@PathVariable Long id, Model model) {
         model.addAttribute("vehicle", service.getVehicleById(id));
-        return "edit_vehicle";
+		return "vehicle_update";
     }
 
 	@PutMapping("/vehicles/edit/save/{id}")
@@ -68,14 +66,14 @@ public class VehicleController {
 
         service.updateVehicle(existentVehicle);
 
-        return "redirect:/vehicles/";
+		return "redirect:/vehicles";
     }
 
 	// DELETE
 	@GetMapping("/vehicles/retire/{id}")
 	public String retireVehicle(@PathVariable Long id, Model model) {
 		model.addAttribute("vehicle", service.getVehicleById(id));
-		return "retire_vehicle";
+		return "vehicle_exit";
 	}
 
 	@PostMapping("/vehicles/retire/payment/{id}")
@@ -103,6 +101,6 @@ public class VehicleController {
 
 		service.deleteVehicle(id);
 
-		return "retire_payment";
+		return "payment_exit";
 	}
 }

@@ -32,4 +32,15 @@ public class HistoryServiceImpl implements HistoryService {
 	public void storeEntry(History entry) {
 		repository.save(entry);
 	}
+
+	@Override
+	public Double calculateTotal(List<History> history) {
+		Double paymentTotal = 0d;
+		if (!history.isEmpty()) {
+			for (History registry : history) {
+				paymentTotal += registry.getPayment();
+			}
+		}
+		return paymentTotal;
+	}
 }
