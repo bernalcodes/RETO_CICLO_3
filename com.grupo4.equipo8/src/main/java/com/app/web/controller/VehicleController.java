@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import com.app.web.entity.History;
 import com.app.web.entity.Vehicle;
@@ -53,7 +52,7 @@ public class VehicleController {
 		return "vehicle_update";
     }
 
-	@PutMapping("/vehicles/edit/save/{id}")
+	@PostMapping("/vehicles/edit/save/{id}")
     public String updateVehicle(@PathVariable Long id, @ModelAttribute("vehicle") Vehicle vehicle, Model model) {
         Vehicle existentVehicle = service.getVehicleById(id);
         existentVehicle.setId(id);

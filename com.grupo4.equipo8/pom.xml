@@ -89,7 +89,7 @@
 					</includes>
 					<jdkVersion>${java.version}</jdkVersion>
 					<processTypes>
-						<web>java $JAVA_OPTS -jar target/${project.build.finalName}.jar</web>
+						<web>java $JAVA_OPTS -jar target/${project.build.finalName}.jar -Dserver.port=$PORT $JAR_OPTS</web>
 					</processTypes>
 				</configuration>
 			</plugin>
