@@ -82,9 +82,13 @@ public class VehicleController {
 		existentVehicle.setExit(vehicle.getExit());
 		existentVehicle.setPayment(service.calculatePayment(existentVehicle.getEntry(), existentVehicle.getExit()));
 
+		String paymentString = NumberFormat.getCurrencyInstance(new Locale("en", "US"))
+				.format(existentVehicle.getPayment()) + " COP";
+
 		service.updateVehicle(existentVehicle);
 
 		model.addAttribute("vehicle", existentVehicle);
+		model.addAttribute("paymentString", paymentString);
 
 		return "payment_exit";
 	}
@@ -92,12 +96,6 @@ public class VehicleController {
 	@PostMapping("/vehicles/retire/payment/{id}")
 	public String calculatePayment(@PathVariable Long id, Model model) {
 		Vehicle existentVehicle = service.getVehicleById(id);
-
-		String paymentString = NumberFormat.getCurrencyInstance(new Locale("en", "US"))
-				.format(existentVehicle.getPayment()) + " COP";
-
-		model.addAttribute("vehicle", service.getVehicleById(id));
-		model.addAttribute("paymentString", paymentString);
 
 		History entry = new History();
 
