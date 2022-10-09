@@ -59,7 +59,7 @@
             <div class="row d-flex justify-content-center">
                 <form
                     class="w-75"
-                    th:action="@{vehicles/retire/payment/{id}(id = ${vehicle.id})}"
+                    th:action="@{/vehicles/retire/payment/{id}(id = ${vehicle.id})}"
                     th:object="${vehicle}"
                     method="POST"
                 >
