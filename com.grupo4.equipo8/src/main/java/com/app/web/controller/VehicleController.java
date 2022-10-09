@@ -80,6 +80,7 @@ public class VehicleController {
 			Model model) {
 		Vehicle existentVehicle = service.getVehicleById(id);
 		existentVehicle.setExit(vehicle.getExit());
+		model.addAttribute("vehicle", existentVehicle);
 		return "payment_exit";
 	}
 
